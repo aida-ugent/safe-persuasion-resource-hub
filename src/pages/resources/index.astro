@@ -1,0 +1,154 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	title: "Resources",
+	description: "Datasets, codebases, and research papers related to LLM persuasion",
+};
+
+// Example resource entries (you can expand this list)
+const resources = [
+	{
+		title: "Hugging Face Datasets & Models",
+		description: "Community hub for models and datasets.",
+		paper: null,
+		dataset: {
+			url: "https://huggingface.co/datasets",
+			description:
+				"Searchable collection of public datasets including dialogue and text corpora useful for persuasion research.",
+		},
+		code: {
+			url: "https://huggingface.co/models",
+			description: "Pre-trained models for language understanding and generation tasks.",
+		},
+	},
+	{
+		title: "Papers with Code",
+		description: "Research papers linked with implementations, datasets, and benchmarks.",
+		paper: "https://paperswithcode.com",
+		dataset: {
+			url: "https://paperswithcode.com/datasets",
+			description:
+				"Curated datasets referenced in published papers with provenance and citation information.",
+		},
+		code: {
+			url: "https://paperswithcode.com/methods",
+			description:
+				"Implementations and methods from papers, often with links to original repositories.",
+		},
+	},
+	{
+		title: "Transformers Library",
+		description: "Core library for transformer-based models.",
+		paper: null,
+		dataset: null,
+		code: {
+			url: "https://github.com/huggingface/transformers",
+			description:
+				"Foundation library for fine-tuning, training, and deploying transformer models. Essential for implementing persuasion-related experiments.",
+		},
+	},
+	{
+		title: "arXiv",
+		description: "Preprints and research papers.",
+		paper: "https://arxiv.org",
+		dataset: null,
+		code: null,
+	},
+];
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-8">Resources</h1>
+
+	<!-- <section class="prose prose-sm prose-cactus mb-8 max-w-none">
+		<p>
+			Datasets, codebases, and research related to persuasion and behavior change in LLMs. Each
+			entry may include papers, datasets, code, or a combination. Use the badges below each entry to
+			jump to specific resources.
+		</p>
+	</section> -->
+
+	<div class="space-y-8">
+		{
+			resources.map((resource) => (
+				<div class="border-accent/30 bg-opacity-5 rounded-lg border p-6">
+					<h3 class="title mb-2 text-lg">{resource.title}</h3>
+					<p class="mb-4 text-sm">{resource.description}</p>
+					<div class="space-y-3">
+						{resource.paper && (
+							<div class="flex items-start gap-3">
+								<a
+									href={resource.paper}
+									target="_blank"
+									rel="noreferrer"
+									class="bg-accent text-accent-content mt-0.5 inline-block flex-shrink-0 rounded px-3 py-1 text-xs font-semibold dark:text-gray-900"
+								>
+									📄 Paper
+								</a>
+								<p class="text-sm">Link to the research paper or preprint.</p>
+							</div>
+						)}
+						{resource.dataset && (
+							<div class="flex items-start gap-3">
+								<a
+									href={
+										typeof resource.dataset === "string" ? resource.dataset : resource.dataset.url
+									}
+									target="_blank"
+									rel="noreferrer"
+									class="bg-accent text-accent-content mt-0.5 inline-block flex-shrink-0 rounded px-3 py-1 text-xs font-semibold dark:text-gray-900"
+								>
+									📊 Dataset
+								</a>
+								<p class="text-sm">
+									{typeof resource.dataset === "string"
+										? "Link to the dataset."
+										: resource.dataset.description}
+								</p>
+							</div>
+						)}
+						{resource.code && (
+							<div class="flex items-start gap-3">
+								<a
+									href={typeof resource.code === "string" ? resource.code : resource.code.url}
+									target="_blank"
+									rel="noreferrer"
+									class="bg-accent text-accent-content mt-0.5 inline-block flex-shrink-0 rounded px-3 py-1 text-xs font-semibold dark:text-gray-900"
+								>
+									💻 Code
+								</a>
+								<p class="text-sm">
+									{typeof resource.code === "string"
+										? "Link to the code repository."
+										: resource.code.description}
+								</p>
+							</div>
+						)}
+					</div>
+				</div>
+			))
+		}
+	</div>
+
+	<section class="prose prose-sm prose-cactus mt-12 max-w-none">
+		<h3>How to contribute</h3>
+		<p>
+			If you know of a relevant resource that is missing, there are two ways to add it:
+			<ul class="list-inside list-disc">
+				<li>
+					<strong>Contact us</strong> — email us the resource information, details in the <a
+						href="/contact/">Contact</a
+					> page.
+				</li>
+				<li>
+					<strong>GitHub</strong> — add it to the website's <a
+						href="https://github.com/kamiledementaviciute/llm-persuasion-resource-hub"
+						target="_blank"
+						rel="noreferrer">GitHub repository</a
+					> and raise a pull request.
+				</li>
+			</ul>
+		</p>
+	</section>
+</PageLayout>
