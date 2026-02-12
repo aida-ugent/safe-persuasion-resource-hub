@@ -6,8 +6,23 @@ const meta = {
 	description: "Datasets, codebases, and research papers related to LLM persuasion",
 };
 
+type ResourceLink =
+	| string
+	| {
+			url: string;
+			description: string;
+	  };
+
+type ResourceItem = {
+	title: string;
+	description: string;
+	paper: string | null;
+	dataset: ResourceLink | null;
+	code: ResourceLink | null;
+};
+
 // Example resource entries (you can expand this list)
-const resources = [
+const resources: ResourceItem[] = [
 	{
 		title: "Hugging Face Datasets & Models",
 		description: "Community hub for models and datasets.",
