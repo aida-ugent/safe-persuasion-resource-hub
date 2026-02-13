@@ -6,6 +6,12 @@ const meta = {
 	description: "Datasets, codebases, and research papers related to LLM persuasion",
 };
 
+type LinkWithUrl =
+	| string
+	| {
+			url: string;
+	  };
+
 type ResourceLink =
 	| string
 	| {
@@ -15,66 +21,224 @@ type ResourceLink =
 
 type ResourceItem = {
 	title: string;
+	year: string;
+	authors: string[];
 	description: string;
 	paper: string | null;
+	studyWebsite: LinkWithUrl | null;
 	dataset: ResourceLink | null;
 	code: ResourceLink | null;
 };
 
-const getResourceUrl = (link: ResourceLink) => (typeof link === "string" ? link : link.url);
+const getResourceUrl = (link: LinkWithUrl) => (typeof link === "string" ? link : link.url);
 
 const getResourceDescription = (link: ResourceLink, fallback: string) =>
 	typeof link === "string" ? fallback : link.description;
 
+const getShortAuthors = (authors: string[]) => {
+	if (authors.length === 0) return "";
+
+	const firstAuthor = authors[0]?.trim() ?? "";
+	const firstAuthorSurname = firstAuthor.split(" ").filter(Boolean).at(-1) ?? firstAuthor;
+
+	return authors.length > 1 ? `${firstAuthorSurname} et al.` : firstAuthorSurname;
+};
+
 // Example resource entries (you can expand this list)
 const resources: ResourceItem[] = [
 	{
-		title: "Hugging Face Datasets & Models",
-		description: "Community hub for models and datasets.",
-		paper: null,
+		title:
+			"Measuring and Benchmarking Large Language Models' Capabilities to Generate Persuasive Language",
+		year: "2024",
+		authors: ["Alisa Pauli", "Mareike Hartmann", "Simone Paolo Ponzetto"],
+		description: "",
+		paper: "https://arxiv.org/abs/2406.17753",
+		studyWebsite: null,
 		dataset: {
-			url: "https://huggingface.co/datasets",
+			url: "https://huggingface.co/datasets/APauli/Persuasive-Pairs",
 			description:
-				"Searchable collection of public datasets including dialogue and text corpora useful for persuasion research.",
+				"Persuasive-Pairs: A collection of 2,7k pairs of short-text; one from a news,debate or chat, one rewritten by LLM to contain more or less persuasive language. The pairs are judged on degrees of persuasive language by three annotators.",
 		},
 		code: {
-			url: "https://huggingface.co/models",
-			description: "Pre-trained models for language understanding and generation tasks.",
+			url: "https://huggingface.co/APauli/Persuasive_language_in_pairs",
+			description: "Model to score relative persuasive language between pairs.",
+		},
+	},
+
+	// {
+	// 	title: "Measuring and Improving Persuasiveness of Large Language Models ",
+	// 	year: "2024",
+	// 	authors: ["Somesh Singh"],
+	// 	description: "",
+	// 	paper: "https://arxiv.org/abs/2410.02653",
+	// 	dataset: {
+	// 		url: "https://behavior-in-the-wild.github.io/measure-persuasion#Dataset",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "https://behavior-in-the-wild.github.io/index.html",
+	// 		description: "",
+	// 	},
+	// },
+
+	{
+		title: "Persuading across Diverse Domains: a Dataset and Persuasion Large Language Model",
+		year: "2024",
+		authors: ["Chuhao Jin"],
+		description: "",
+		paper: "https://aclanthology.org/2024.acl-long.92/",
+		studyWebsite: "https://persugpt.github.io/",
+		dataset: {
+			url: "https://github.com/PersuGPT/PersuGPT.github.io/blob/main/DailyPersuasion_full_version.zip",
+			description:
+				"We propose the persuasive dialogue dataset DailyPersuasion, covering 13,000 scenarios in 35 domains, and the model PersuGPT, which outperforms GPT-4 in both automatic and manual evaluation in unseen persuasion scenarios.",
+		},
+		code: {
+			url: "https://github.com/PersuGPT/PersuGPT.github.io",
+			description: "",
+		},
+	},
+	// {
+	// 	title: "Decoding Persuasiveness in Eloquence Competitions: An Investigation into the LLM’s Ability to Assess Public Speaking",
+	// 	year: "",
+	// 	authors: [],
+	// 	description: "",
+	// 	paper: null,
+	// 	studyWebsite: null,
+	// 	dataset: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// },
+	{
+		title: "Among Them: A Game-Based Framework for Assessing Persuasion Capabilities of LLMs",
+		year: "2025",
+		authors: ["Mateusz Idziejczak"],
+		description: "",
+		paper: "https://arxiv.org/abs/2502.20426",
+		studyWebsite: null,
+		dataset: {
+			url: "https://github.com/Farmerobot/among_them/tree/main/data",
+			description: "",
+		},
+		code: {
+			url: "https://github.com/Farmerobot/among_them",
+			description:
+				"A platform for analyzing and comparing the persuasive capabilities of Large Language Models through simulated social deduction gameplay inspired by Among US",
 		},
 	},
 	{
-		title: "Papers with Code",
-		description: "Research papers linked with implementations, datasets, and benchmarks.",
-		paper: "https://paperswithcode.com",
-		dataset: {
-			url: "https://paperswithcode.com/datasets",
-			description:
-				"Curated datasets referenced in published papers with provenance and citation information.",
-		},
-		code: {
-			url: "https://paperswithcode.com/methods",
-			description:
-				"Implementations and methods from papers, often with links to original repositories.",
-		},
-	},
-	{
-		title: "Transformers Library",
-		description: "Core library for transformer-based models.",
-		paper: null,
+		title: "MakeMeSay, OpenAI o3-mini System Card",
+		year: "2025",
+		authors: ["OpenAI"],
+		description: "",
+		paper: "https://cdn.openai.com/o3-mini-system-card-feb10.pdf",
+		studyWebsite: null,
 		dataset: null,
 		code: {
-			url: "https://github.com/huggingface/transformers",
+			url: "https://github.com/openai/evals/tree/main/evals/elsuite/make_me_say",
 			description:
-				"Foundation library for fine-tuning, training, and deploying transformer models. Essential for implementing persuasion-related experiments.",
+				"This evaluation tests a model’s ability to generate persuasive or manipulative text, specifically in the setting of a game where one AI system has to get the other party (an AI system simulating a human) to say a specific codeword without arousing suspicion.",
 		},
 	},
 	{
-		title: "arXiv",
-		description: "Preprints and research papers.",
-		paper: "https://arxiv.org",
+		title: "MakeMePay, OpenAI o3-mini System Card",
+		year: "2025",
+		authors: ["OpenAI"],
+		description: "",
+		paper: "https://cdn.openai.com/o3-mini-system-card-feb10.pdf",
+		studyWebsite: null,
 		dataset: null,
-		code: null,
+		code: {
+			url: "https://github.com/openai/evals/tree/main/evals/elsuite/make_me_pay",
+			description:
+				"This evaluation tests an AI system’s ability to generate persuasive or manipulative text, specifically in the setting of convincing another (simulated) entity to part with money.",
+		},
 	},
+	// {
+	// 	title: "",
+	// 	year: "",
+	// 	authors: [],
+	// 	description: "",
+	// 	paper: "",
+	// 	studyWebsite: null,
+	// 	dataset: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// },
+	// {
+	// 	title: "",
+	// 	year: "",
+	// 	authors: [],
+	// 	description: "",
+	// 	paper: "",
+	// 	studyWebsite: null,
+	// 	dataset: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// },
+	// {
+	// 	title: "",
+	// 	year: "",
+	// 	authors: [],
+	// 	description: "",
+	// 	paper: "",
+	// 	studyWebsite: null,
+	// 	dataset: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// },
+	// {
+	// 	title: "",
+	// 	year: "",
+	// 	authors: [],
+	// 	description: "",
+	// 	paper: "",
+	// 	studyWebsite: null,
+	// 	dataset: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// },
+	// {
+	// 	title: "",
+	// 	year: "",
+	// 	authors: [],
+	// 	description: "",
+	// 	paper: "",
+	// 	studyWebsite: null,
+	// 	dataset: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// },
 ];
 
 const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}`;
@@ -96,28 +260,49 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, ""
 			resources.map((resource) => (
 				<div class="border-accent/30 bg-opacity-5 rounded-lg border p-6">
 					<h3 class="title mb-2 text-lg">{resource.title}</h3>
-					<p class="mb-4 text-sm">{resource.description}</p>
-					<div class="space-y-3">
-						{resource.paper && (
-							<div class="flex items-start gap-3">
+					{(resource.studyWebsite ||
+						resource.paper ||
+						resource.year ||
+						resource.authors.length > 0) && (
+						<div class="mb-4 flex flex-wrap items-center gap-3 text-sm opacity-80">
+							{resource.studyWebsite && (
+								<a
+									href={getResourceUrl(resource.studyWebsite)}
+									target="_blank"
+									rel="noreferrer"
+									class="border-accent/60 text-accent inline-block flex-shrink-0 rounded border px-3 py-1 text-xs font-semibold"
+								>
+									🔗 Website
+								</a>
+							)}
+							{resource.paper && (
 								<a
 									href={resource.paper}
 									target="_blank"
 									rel="noreferrer"
-									class="bg-accent text-accent-content mt-0.5 inline-block flex-shrink-0 rounded px-3 py-1 text-xs font-semibold dark:text-gray-900"
+									class="border-accent/60 text-accent inline-block flex-shrink-0 rounded border px-3 py-1 text-xs font-semibold"
 								>
 									📄 Paper
 								</a>
-								<p class="text-sm">Link to the research paper or preprint.</p>
-							</div>
-						)}
+							)}
+							{(resource.year || resource.authors.length > 0) && (
+								<p>
+									{resource.year}
+									{resource.year && resource.authors.length > 0 && " • "}
+									{getShortAuthors(resource.authors)}
+								</p>
+							)}
+						</div>
+					)}
+					<p class="mb-4 text-sm">{resource.description}</p>
+					<div class="space-y-3">
 						{resource.dataset && (
 							<div class="flex items-start gap-3">
 								<a
 									href={getResourceUrl(resource.dataset)}
 									target="_blank"
 									rel="noreferrer"
-									class="bg-accent text-accent-content mt-0.5 inline-block flex-shrink-0 rounded px-3 py-1 text-xs font-semibold dark:text-gray-900"
+									class="bg-accent mt-0.5 inline-flex w-28 flex-shrink-0 justify-center rounded px-3 py-1 text-xs font-semibold text-white dark:text-black"
 								>
 									📊 Dataset
 								</a>
@@ -132,7 +317,7 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, ""
 									href={getResourceUrl(resource.code)}
 									target="_blank"
 									rel="noreferrer"
-									class="bg-accent text-accent-content mt-0.5 inline-block flex-shrink-0 rounded px-3 py-1 text-xs font-semibold dark:text-gray-900"
+									class="bg-accent mt-0.5 inline-flex w-28 flex-shrink-0 justify-center rounded px-3 py-1 text-xs font-semibold text-white dark:text-black"
 								>
 									💻 Code
 								</a>
