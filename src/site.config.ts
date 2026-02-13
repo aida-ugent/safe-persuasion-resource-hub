@@ -25,9 +25,9 @@ export const siteConfig: SiteConfig = {
 		- The link value found in src/components/layout/Header.astro L:35
 		- In the footer found in src/components/layout/Footer.astro L:12
 	*/
-	title: "Safe Persuasion Hub",
+	title: "LLM Persuasion Safety Hub",
 	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
-	url: "https://aida-ugent.github.io/safe-persuasion-resource-hub/",
+	url: "https://aida-ugent.github.io/llm-persuasion-safety-hub/",
 };
 
 // Used to generate links in both the Header & Footer.
