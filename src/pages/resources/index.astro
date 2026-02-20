@@ -10,6 +10,7 @@ type LinkWithUrl =
 	| string
 	| {
 			url: string;
+			label?: string;
 	  };
 
 type ResourceLink =
@@ -24,13 +25,16 @@ type ResourceItem = {
 	year: string;
 	authors: string[];
 	description: string;
-	paper: string | null;
+	paper: LinkWithUrl | null;
 	studyWebsite: LinkWithUrl | null;
 	dataset: ResourceLink | null;
 	code: ResourceLink | null;
 };
 
 const getResourceUrl = (link: LinkWithUrl) => (typeof link === "string" ? link : link.url);
+
+const getResourceLabel = (link: LinkWithUrl, fallback: string) =>
+	typeof link === "string" ? fallback : link.label ?? fallback;
 
 const getResourceDescription = (link: ResourceLink, fallback: string) =>
 	typeof link === "string" ? fallback : link.description;
@@ -178,6 +182,22 @@ const resources: ResourceItem[] = [
 		},
 		code: null,
 	},
+	{
+		title:
+			"It’s the Thought that Counts: Evaluating the Attempts of Frontier LLMs to Persuade on Harmful Topics",
+		year: "2025",
+		authors: ["Matthew Kowal", "Jasper Timm", "Jean-Francois Godbout", "others"],
+		description:
+			"The APE benchmark evaluates the propensity (willingness) of LLMs to attempt persuasion on harmful topics like conspiracies and violence.",
+		paper: "https://arxiv.org/abs/2506.02873",
+		studyWebsite: null,
+		dataset: null,
+		code: {
+			url: "https://github.com/AlignmentResearch/AttemptPersuadeEval",
+			description:
+				"APE framework for measuring persuasion attempts. Includes topics, prompts and code for generating a synthetic dataset.",
+		},
+	},
 
 	// {
 	// 	title: "Decoding Persuasiveness in Eloquence Competitions: An Investigation into the LLM’s Ability to Assess Public Speaking",
@@ -197,23 +217,6 @@ const resources: ResourceItem[] = [
 	// },
 
 	// {
-	// 	title: "ChatThero: An LLM-Supported Chatbot for Behavior Change and Therapy",
-	// 	year: "2025",
-	// 	authors: ["Junda Wang", "Zonghai Yao"],
-	// 	description: "",
-	// 	paper: "https://arxiv.org/abs/2508.20996",
-	// 	studyWebsite: null,
-	// 	dataset: {
-	// 		url: "",
-	// 		description: "",
-	// 	},
-	// 	code: {
-	// 		url: "",
-	// 		description: "",
-	// 	},
-	// },
-
-	// {
 	// 	title: "",
 	// 	year: "",
 	// 	authors: [],
@@ -262,57 +265,19 @@ const resources: ResourceItem[] = [
 	// 	},
 	// },
 
-	{
-		title:
-			"It’s the Thought that Counts: Evaluating the Attempts of Frontier LLMs to Persuade on Harmful Topics",
-		year: "2025",
-		authors: ["Matthew Kowal", "Jasper Timm", "Jean-Francois Godbout", "others"],
-		description:
-			"The APE benchmark evaluates the propensity (willingness) of LLMs to attempt persuasion on harmful topics like conspiracies and violence.",
-		paper: "https://arxiv.org/abs/2506.02873",
-		studyWebsite: null,
-		dataset: {
-			url: "https://github.com/AlignmentResearch/AttemptPersuadeEval",
-			description: "Topics and prompts for evaluating persuasion attempts on harmful content.",
-		},
-		code: {
-			url: "https://github.com/AlignmentResearch/AttemptPersuadeEval",
-			description: "Evaluation framework for measuring persuasion attempts.",
-		},
-	},
-	{
-		title: "ChatThero: A Language Agent for Recovery Support",
-		year: "2025",
-		authors: ["Junda Wang", "Zonghai Yao", "Lingxi Li", "Junhui Qian", "Zhichao Yang", "Hong Yu"],
-		description:
-			"A multi-session autonomous language agent trained in a simulated environment to support addiction recovery.",
-		paper: "https://arxiv.org/abs/2508.20996",
-		studyWebsite: null,
-		dataset: {
-			url: "https://anonymous.4open.science/r/ChatThero-E6E1/README.md",
-			description: "Synthetic patient profiles and dialogue data (anonymized repository).",
-		},
-		code: {
-			url: "https://anonymous.4open.science/r/ChatThero-E6E1/README.md",
-			description:
-				"Code for the ChatThero agent and simulation environment (anonymized repository).",
-		},
-	},
 	{
 		title: "MultiAgentBench: Evaluating the Collaboration and Competition of LLM agents",
 		year: "2025",
 		authors: ["Kunlun Zhu", "Hongyi Du", "Zhaochen Hong", "others"],
 		description:
-			"Benchmarks multi-agent coordination and competition across scenarios like coding, research, and games (Werewolf, Bargaining).",
+			"Benchmarks multi-agent coordination and competition across scenarios like coding, research, and games (persuasion related tasks: Werewolf, Bargaining).",
 		paper: "https://arxiv.org/abs/2503.01935",
 		studyWebsite: null,
-		dataset: {
-			url: "https://github.com/MultiagentBench/MARBLE",
-			description: "Data for various interaction scenarios including research, coding, and gaming.",
-		},
+		dataset: null,
 		code: {
 			url: "https://github.com/MultiagentBench/MARBLE",
-			description: "The MARBLE framework for multi-agent coordination evaluation.",
+			description:
+				"The MARBLE framework for multi-agent collaboration and competition evaluation. ",
 		},
 	},
 
@@ -321,16 +286,13 @@ const resources: ResourceItem[] = [
 		year: "2024",
 		authors: ["Suma Bailis", "Jane Friedhoff", "Feiyang Chen"],
 		description:
-			"A framework for evaluating LLMs via the social deduction game Werewolf, focusing on deception, deduction, and turn-taking.",
+			"A framework for evaluating LLMs via the social deduction game Werewolf, focusing on persuasion, deception, deduction.",
 		paper: "https://arxiv.org/abs/2407.13943",
 		studyWebsite: null,
-		dataset: {
-			url: "https://github.com/google/werewolf_arena",
-			description: "Game logs and agent interaction data.",
-		},
+		dataset: null,
 		code: {
 			url: "https://github.com/google/werewolf_arena",
-			description: "Code for the Werewolf Arena simulation framework.",
+			description: "Code and prompt templates for the Werewolf Arena simulation framework.",
 		},
 	},
 	{
@@ -346,16 +308,17 @@ const resources: ResourceItem[] = [
 		],
 		description:
 			"An Anthropic study measuring human belief shifts on various topics after reading arguments generated by Claude models.",
-		paper: "https://www.anthropic.com/news/measuring-model-persuasiveness",
-		studyWebsite: "https://www.anthropic.com/news/measuring-model-persuasiveness",
+		paper: {
+			url: "https://www.anthropic.com/news/measuring-model-persuasiveness",
+			label: "Blog post",
+		},
+		studyWebsite: null,
 		dataset: {
 			url: "https://huggingface.co/datasets/Anthropic/persuasion",
-			description: "Claims, arguments, and persuasiveness scores from the human study.",
+			description:
+				"The Persuasion Dataset contains claims and corresponding human-written and model-generated arguments, along with persuasiveness scores.",
 		},
-		code: {
-			url: null,
-			description: "No public codebase explicitly linked in the source text.",
-		},
+		code: null,
 	},
 ];
 
@@ -395,12 +358,12 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, ""
 							)}
 							{resource.paper && (
 								<a
-									href={resource.paper}
+									href={getResourceUrl(resource.paper)}
 									target="_blank"
 									rel="noreferrer"
 									class="border-accent/60 text-accent inline-block flex-shrink-0 rounded border px-3 py-1 text-xs font-semibold"
 								>
-									📄 Paper
+									📄 {getResourceLabel(resource.paper, "Paper")}
 								</a>
 							)}
 							{(resource.year || resource.authors.length > 0) && (
