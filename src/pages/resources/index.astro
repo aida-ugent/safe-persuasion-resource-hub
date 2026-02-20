@@ -52,16 +52,18 @@ const resources: ResourceItem[] = [
 		year: "2024",
 		authors: ["Alisa Pauli", "Mareike Hartmann", "Simone Paolo Ponzetto"],
 		description: "",
+		// "A study evaluating how LLMs recognize and generate persuasive text, introducing a benchmark to quantify linguistic influence.",
 		paper: "https://arxiv.org/abs/2406.17753",
 		studyWebsite: null,
 		dataset: {
 			url: "https://huggingface.co/datasets/APauli/Persuasive-Pairs",
 			description:
-				"Persuasive-Pairs: A collection of 2,7k pairs of short-text; one from a news,debate or chat, one rewritten by LLM to contain more or less persuasive language. The pairs are judged on degrees of persuasive language by three annotators.",
+				"<strong>Persuasive-Pairs</strong>: 2,700 text pairs from news, debates, and chats. Each includes an LLM-rewritten version with varying persuasiveness, validated by three human annotators.",
 		},
 		code: {
 			url: "https://huggingface.co/APauli/Persuasive_language_in_pairs",
-			description: "Model to score relative persuasive language between pairs.",
+			description:
+				"A scoring model to evaluate the relative persuasiveness between two text samples.",
 		},
 	},
 
@@ -80,7 +82,6 @@ const resources: ResourceItem[] = [
 	// 		description: "",
 	// 	},
 	// },
-
 	{
 		title: "Persuading across Diverse Domains: a Dataset and Persuasion Large Language Model",
 		year: "2024",
@@ -91,12 +92,9 @@ const resources: ResourceItem[] = [
 		dataset: {
 			url: "https://github.com/PersuGPT/PersuGPT.github.io/blob/main/DailyPersuasion_full_version.zip",
 			description:
-				"We propose the persuasive dialogue dataset DailyPersuasion, covering 13,000 scenarios in 35 domains, and the model PersuGPT, which outperforms GPT-4 in both automatic and manual evaluation in unseen persuasion scenarios.",
+				"DailyPersuasion: A dataset covering 13,000 dialogue scenarios across 35 distinct domains.",
 		},
-		code: {
-			url: "https://github.com/PersuGPT/PersuGPT.github.io",
-			description: "",
-		},
+		code: null,
 	},
 	// {
 	// 	title: "Decoding Persuasiveness in Eloquence Competitions: An Investigation into the LLM’s Ability to Assess Public Speaking",
@@ -118,17 +116,19 @@ const resources: ResourceItem[] = [
 		title: "Among Them: A Game-Based Framework for Assessing Persuasion Capabilities of LLMs",
 		year: "2025",
 		authors: ["Mateusz Idziejczak", "others"],
-		description: "",
+		description:
+			"An evaluation framework using social deduction gameplay to measure how LLMs use persuasion and deception in dynamic environments.",
 		paper: "https://arxiv.org/abs/2502.20426",
 		studyWebsite: null,
 		dataset: {
 			url: "https://github.com/Farmerobot/among_them/tree/main/data",
-			description: "",
+			description:
+				"Logs and transcripts from simulated social deduction games used to analyze model behavior.",
 		},
 		code: {
 			url: "https://github.com/Farmerobot/among_them",
 			description:
-				"A platform for analyzing and comparing the persuasive capabilities of Large Language Models through simulated social deduction gameplay inspired by Among US",
+				"A simulation platform inspired by 'Among Us' for testing persuasive and deceptive capabilities in LLMs.",
 		},
 	},
 	{
@@ -175,21 +175,25 @@ const resources: ResourceItem[] = [
 	// 		description: "",
 	// 	},
 	// },
+
 	{
 		title:
 			"Persuade Me if You Can: A Framework for Evaluating Persuasion Effectiveness and Susceptibility Among Large Language Models",
 		year: "2025",
 		authors: ["Nimet Beyza Bozdag", "Shuhaib Mehri", "Gokhan Tur", "Dilek Hakkani-Tür"],
-		description: "",
+		description:
+			"A framework assessing LLMs on two fronts: their ability to change a user's mind and their own susceptibility to being persuaded.",
 		paper: "https://arxiv.org/abs/2503.01829",
 		studyWebsite: null,
 		dataset: {
 			url: "https://github.com/beyzabozdag/PersuadeMeIfYouCan/tree/main/data",
-			description: "",
+			description:
+				"Benchmark data used to measure shifts in model and user opinions across controversial topics.",
 		},
 		code: {
 			url: "https://github.com/beyzabozdag/PersuadeMeIfYouCan",
-			description: "",
+			description:
+				"Evaluation scripts and interaction loops for testing persuasion and susceptibility.",
 		},
 	},
 	// {
@@ -240,6 +244,196 @@ const resources: ResourceItem[] = [
 	// 		description: "",
 	// 	},
 	// },
+	{
+		title: "Persuading across Diverse Domains: A Dataset and Persuasion Large Language Model",
+		year: "2024",
+		authors: [
+			"Chuhao Jin",
+			"Kening Ren",
+			"Lingzhen Kong",
+			"Xiting Wang",
+			"Ruihua Song",
+			"Huan Chen",
+		],
+		description:
+			"Introduces DailyPersuasion, a large-scale multi-domain persuasive dialogue dataset, and PersuGPT, a model specialized in persuasion strategies.",
+		paper: "https://aclanthology.org/2024.acl-long.92/",
+		studyWebsite: "https://persugpt.github.io",
+		dataset: {
+			url: "https://persugpt.github.io",
+			description:
+				"DailyPersuasion dataset comprising 78,000 dialogue sessions spanning 35 domains.",
+		},
+		code: {
+			url: "https://persugpt.github.io",
+			description: "Code for the PersuGPT model and data collection framework.",
+		},
+	},
+	{
+		title:
+			"Measuring and Benchmarking Large Language Models’ Capabilities to Generate Persuasive Language",
+		year: "2024",
+		authors: ["Amalie Brogaard Pauli", "Isabelle Augenstein", "Ira Assent"],
+		description:
+			"Presents PERSUASIVE-PAIRS, a dataset of text pairs rewritten to be more or less persuasive, and a regression model for scoring relative persuasiveness.",
+		paper: "https://arxiv.org/abs/2406.17753",
+		studyWebsite: null,
+		dataset: {
+			url: "https://huggingface.co/datasets/APauli/Persuasive-Pairs",
+			description: "2697 short-text pairs annotated for relative persuasive language.",
+		},
+		code: {
+			url: "https://huggingface.co/APauli/Persuasive_language_in_pairs",
+			description: "A trained regression model to score and benchmark persuasive language.",
+		},
+	},
+	{
+		title: "Measuring and Improving Persuasiveness of Large Language Models",
+		year: "2024",
+		authors: ["Somesh Singh", "Yaman K Singla", "Harini SI", "Balaji Krishnamurthy"],
+		description:
+			"Introduces PersuasionBench and PersuasionArena to evaluate generative and simulative persuasion capabilities, including the task of 'transsuasion'.",
+		paper: "https://arxiv.org/abs/2410.02653",
+		studyWebsite: "https://behavior-in-the-wild.github.io/measure-persuasion",
+		dataset: {
+			url: "https://behavior-in-the-wild.github.io/measure-persuasion",
+			description: "Benchmark datasets for evaluating persuasion across different tasks.",
+		},
+		code: {
+			url: "https://behavior-in-the-wild.github.io/measure-persuasion",
+			description: "Platform for the PersuasionArena and evaluation scripts.",
+		},
+	},
+	{
+		title:
+			"Persuade Me if You Can: A Framework for Evaluating Persuasion Effectiveness and Susceptibility Among Large Language Models",
+		year: "2025",
+		authors: ["Nimet Beyza Bozdag", "Shuhaib Mehri", "Gokhan Tur", "Dilek Hakkani-Tür"],
+		description:
+			"The PMIYC framework evaluates LLMs in multi-turn conversations to measure both their effectiveness as persuaders and susceptibility as persuadees.",
+		paper: "https://arxiv.org/abs/2503.01829",
+		studyWebsite: "https://beyzabozdag.github.io/PMIYC",
+		dataset: {
+			url: "https://beyzabozdag.github.io/PMIYC",
+			description: "Data related to the multi-agent persuasion framework.",
+		},
+		code: {
+			url: "https://beyzabozdag.github.io/PMIYC",
+			description: "Code for the multi-agent simulation framework.",
+		},
+	},
+	{
+		title:
+			"It’s the Thought that Counts: Evaluating the Attempts of Frontier LLMs to Persuade on Harmful Topics",
+		year: "2025",
+		authors: ["Matthew Kowal", "Jasper Timm", "Jean-Francois Godbout", "others"],
+		description:
+			"The APE benchmark evaluates the propensity (willingness) of LLMs to attempt persuasion on harmful topics like conspiracies and violence.",
+		paper: "https://arxiv.org/abs/2506.02873",
+		studyWebsite: null,
+		dataset: {
+			url: "https://github.com/AlignmentResearch/AttemptPersuadeEval",
+			description: "Topics and prompts for evaluating persuasion attempts on harmful content.",
+		},
+		code: {
+			url: "https://github.com/AlignmentResearch/AttemptPersuadeEval",
+			description: "Evaluation framework for measuring persuasion attempts.",
+		},
+	},
+	{
+		title: "ChatThero: A Language Agent for Recovery Support",
+		year: "2025",
+		authors: ["Junda Wang", "Zonghai Yao", "Lingxi Li", "Junhui Qian", "Zhichao Yang", "Hong Yu"],
+		description:
+			"A multi-session autonomous language agent trained in a simulated environment to support addiction recovery.",
+		paper: "https://arxiv.org/abs/2508.20996",
+		studyWebsite: null,
+		dataset: {
+			url: "https://anonymous.4open.science/r/ChatThero-E6E1/README.md",
+			description: "Synthetic patient profiles and dialogue data (anonymized repository).",
+		},
+		code: {
+			url: "https://anonymous.4open.science/r/ChatThero-E6E1/README.md",
+			description:
+				"Code for the ChatThero agent and simulation environment (anonymized repository).",
+		},
+	},
+	{
+		title: "MultiAgentBench: Evaluating the Collaboration and Competition of LLM agents",
+		year: "2025",
+		authors: ["Kunlun Zhu", "Hongyi Du", "Zhaochen Hong", "others"],
+		description:
+			"Benchmarks multi-agent coordination and competition across scenarios like coding, research, and games (Werewolf, Bargaining).",
+		paper: "https://arxiv.org/abs/2503.01935",
+		studyWebsite: null,
+		dataset: {
+			url: "https://github.com/MultiagentBench/MARBLE",
+			description: "Data for various interaction scenarios including research, coding, and gaming.",
+		},
+		code: {
+			url: "https://github.com/MultiagentBench/MARBLE",
+			description: "The MARBLE framework for multi-agent coordination evaluation.",
+		},
+	},
+	{
+		title: "Among Them: A Game-Based Framework for Assessing Persuasion Capabilities of LLMs",
+		year: "2025",
+		authors: ["Mateusz Idziejczak", "Vasyl Korzavatykh", "Mateusz Stawicki", "others"],
+		description:
+			"An evaluation framework using social deduction gameplay to measure how LLMs use persuasion and deception in dynamic environments.",
+		paper: "https://arxiv.org/abs/2502.20426",
+		studyWebsite: null,
+		dataset: {
+			url: "https://doi.org/10.5281/zenodo.14935395",
+			description: "Annotated dataset of LLM persuasion phrases and game logs.",
+		},
+		code: {
+			url: "https://github.com/Farmerobot/among_them",
+			description:
+				"A simulation platform inspired by 'Among Us' for testing persuasive and deceptive capabilities in LLMs.",
+		},
+	},
+	{
+		title: "Werewolf Arena: A Case Study in LLM Evaluation via Social Deduction",
+		year: "2024",
+		authors: ["Suma Bailis", "Jane Friedhoff", "Feiyang Chen"],
+		description:
+			"A framework for evaluating LLMs via the social deduction game Werewolf, focusing on deception, deduction, and turn-taking.",
+		paper: "https://arxiv.org/abs/2407.13943",
+		studyWebsite: null,
+		dataset: {
+			url: "https://github.com/google/werewolf_arena",
+			description: "Game logs and agent interaction data.",
+		},
+		code: {
+			url: "https://github.com/google/werewolf_arena",
+			description: "Code for the Werewolf Arena simulation framework.",
+		},
+	},
+	{
+		title: "Measuring the Persuasiveness of Language Models",
+		year: "2024",
+		authors: [
+			"Esin Durmus",
+			"Liane Lovitt",
+			"Alex Tamkin",
+			"Stuart Ritchie",
+			"Jack Clark",
+			"Deep Ganguli",
+		],
+		description:
+			"An Anthropic study measuring human belief shifts on various topics after reading arguments generated by Claude models.",
+		paper: "https://www.anthropic.com/news/measuring-model-persuasiveness",
+		studyWebsite: "https://www.anthropic.com/news/measuring-model-persuasiveness",
+		dataset: {
+			url: "https://huggingface.co/datasets/Anthropic/persuasion",
+			description: "Claims, arguments, and persuasiveness scores from the human study.",
+		},
+		code: {
+			url: null,
+			description: "No public codebase explicitly linked in the source text.",
+		},
+	},
 ];
 
 const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}`;
@@ -307,9 +501,10 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, ""
 								>
 									📊 Dataset
 								</a>
-								<p class="text-sm">
-									{getResourceDescription(resource.dataset, "Link to the dataset.")}
-								</p>
+								<p
+									class="text-sm"
+									set:html={getResourceDescription(resource.dataset, "Link to the dataset.")}
+								/>
 							</div>
 						)}
 						{resource.code && (
