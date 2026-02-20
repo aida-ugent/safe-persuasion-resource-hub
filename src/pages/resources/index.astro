@@ -44,15 +44,38 @@ const getShortAuthors = (authors: string[]) => {
 	return authors.length > 1 ? `${firstAuthorSurname} et al.` : firstAuthorSurname;
 };
 
-// Example resource entries (you can expand this list)
 const resources: ResourceItem[] = [
 	{
-		title:
-			"Measuring and Benchmarking Large Language Models' Capabilities to Generate Persuasive Language",
+		title: "Persuading across Diverse Domains: A Dataset and Persuasion Large Language Model",
 		year: "2024",
-		authors: ["Alisa Pauli", "Mareike Hartmann", "Simone Paolo Ponzetto"],
-		description: "",
-		// "A study evaluating how LLMs recognize and generate persuasive text, introducing a benchmark to quantify linguistic influence.",
+		authors: [
+			"Chuhao Jin",
+			"Kening Ren",
+			"Lingzhen Kong",
+			"Xiting Wang",
+			"Ruihua Song",
+			"Huan Chen",
+		],
+		description:
+			"Introduces DailyPersuasion, a large-scale multi-domain persuasive dialogue dataset, and PersuGPT, a model specialized in persuasion strategies.",
+		paper: "https://aclanthology.org/2024.acl-long.92/",
+		studyWebsite: "https://persugpt.github.io",
+		dataset: {
+			url: "https://github.com/PersuGPT/PersuGPT.github.io/blob/main/DailyPersuasion_full_version.zip",
+			description:
+				"DailyPersuasion: A dataset covering 13,000 dialogue scenarios across 35 distinct domains.",
+		},
+		code: {
+			url: "https://persugpt.github.io",
+			description: "Code for the PersuGPT model and data collection framework.",
+		},
+	},
+	{
+		title:
+			"Measuring and Benchmarking Large Language Models’ Capabilities to Generate Persuasive Language",
+		year: "2024",
+		authors: ["Amalie Brogaard Pauli", "Isabelle Augenstein", "Ira Assent"],
+		description: "A study of LLM ability to produce persuasive text.",
 		paper: "https://arxiv.org/abs/2406.17753",
 		studyWebsite: null,
 		dataset: {
@@ -63,72 +86,7 @@ const resources: ResourceItem[] = [
 		code: {
 			url: "https://huggingface.co/APauli/Persuasive_language_in_pairs",
 			description:
-				"A scoring model to evaluate the relative persuasiveness between two text samples.",
-		},
-	},
-
-	// {
-	// 	title: "Measuring and Improving Persuasiveness of Large Language Models ",
-	// 	year: "2024",
-	// 	authors: ["Somesh Singh"],
-	// 	description: "",
-	// 	paper: "https://arxiv.org/abs/2410.02653",
-	// 	dataset: {
-	// 		url: "https://behavior-in-the-wild.github.io/measure-persuasion#Dataset",
-	// 		description: "",
-	// 	},
-	// 	code: {
-	// 		url: "https://behavior-in-the-wild.github.io/index.html",
-	// 		description: "",
-	// 	},
-	// },
-	{
-		title: "Persuading across Diverse Domains: a Dataset and Persuasion Large Language Model",
-		year: "2024",
-		authors: ["Chuhao Jin", "others"],
-		description: "",
-		paper: "https://aclanthology.org/2024.acl-long.92/",
-		studyWebsite: "https://persugpt.github.io/",
-		dataset: {
-			url: "https://github.com/PersuGPT/PersuGPT.github.io/blob/main/DailyPersuasion_full_version.zip",
-			description:
-				"DailyPersuasion: A dataset covering 13,000 dialogue scenarios across 35 distinct domains.",
-		},
-		code: null,
-	},
-	// {
-	// 	title: "Decoding Persuasiveness in Eloquence Competitions: An Investigation into the LLM’s Ability to Assess Public Speaking",
-	// 	year: "",
-	// 	authors: [],
-	// 	description: "",
-	// 	paper: null,
-	// 	studyWebsite: null,
-	// 	dataset: {
-	// 		url: "",
-	// 		description: "",
-	// 	},
-	// 	code: {
-	// 		url: "",
-	// 		description: "",
-	// 	},
-	// },
-	{
-		title: "Among Them: A Game-Based Framework for Assessing Persuasion Capabilities of LLMs",
-		year: "2025",
-		authors: ["Mateusz Idziejczak", "others"],
-		description:
-			"An evaluation framework using social deduction gameplay to measure how LLMs use persuasion and deception in dynamic environments.",
-		paper: "https://arxiv.org/abs/2502.20426",
-		studyWebsite: null,
-		dataset: {
-			url: "https://github.com/Farmerobot/among_them/tree/main/data",
-			description:
-				"Logs and transcripts from simulated social deduction games used to analyze model behavior.",
-		},
-		code: {
-			url: "https://github.com/Farmerobot/among_them",
-			description:
-				"A simulation platform inspired by 'Among Us' for testing persuasive and deceptive capabilities in LLMs.",
+				"A trained regression model model to evaluate the relative persuasiveness between two text samples.",
 		},
 	},
 	{
@@ -159,6 +117,85 @@ const resources: ResourceItem[] = [
 				"This evaluation tests an AI system’s ability to generate persuasive or manipulative text, specifically in the setting of convincing another (simulated) entity to part with money.",
 		},
 	},
+	{
+		title: "Among Them: A Game-Based Framework for Assessing Persuasion Capabilities of LLMs",
+		year: "2025",
+		authors: [
+			"Mateusz Idziejczak",
+			"Vasyl Korzavatykh",
+			"Mateusz Stawicki",
+			"Andrii Chmutov",
+			"Marcin Korcz",
+			"Iwo Błądek",
+			"Dariusz Brzezinski",
+		],
+		description:
+			"An evaluation framework using social deduction gameplay to measure how LLMs use persuasion and deception in dynamic environments.",
+		paper: "https://arxiv.org/abs/2502.20426",
+		studyWebsite: null,
+		dataset: {
+			url: "https://doi.org/10.5281/zenodo.14935395",
+			description:
+				"Logs and transcripts from simulated social deduction games used to analyze model behavior.",
+		},
+		code: {
+			url: "https://github.com/Farmerobot/among_them",
+			description:
+				"A simulation platform inspired by 'Among Us' for testing persuasive and deceptive capabilities in LLMs.",
+		},
+	},
+	{
+		title:
+			"Persuade Me if You Can: A Framework for Evaluating Persuasion Effectiveness and Susceptibility Among Large Language Models",
+		year: "2025",
+		authors: ["Nimet Beyza Bozdag", "Shuhaib Mehri", "Gokhan Tur", "Dilek Hakkani-Tür"],
+		description:
+			"The PMIYC framework evaluates LLMs in multi-turn conversations to measure both their effectiveness as persuaders and susceptibility as persuadees.",
+		paper: "https://arxiv.org/abs/2503.01829",
+		studyWebsite: "https://beyzabozdag.github.io/PMIYC",
+		dataset: {
+			url: "https://github.com/beyzabozdag/PersuadeMeIfYouCan/tree/main/data",
+			description:
+				"Benchmark data used to measure shifts in model and user opinions across controversial topics. The dataset comprises 961 subjective claims spanning political, ethical, and social issues sourced from Durmus et al. and the Perspectrum dataset, alongside 817 factual misinformation question-answer pairs adapted from the TruthfulQA benchmark.",
+		},
+		code: {
+			url: "https://github.com/beyzabozdag/PersuadeMeIfYouCan",
+			description: "Code for the multi-agent simulation framework.",
+		},
+	},
+	{
+		title: "Measuring and Improving Persuasiveness of Large Language Models",
+		year: "2024",
+		authors: ["Somesh Singh", "Yaman K Singla", "Harini SI", "Balaji Krishnamurthy"],
+		description:
+			"Introduces PersuasionBench and PersuasionArena to evaluate LLM generative and simulative persuasion capabilities, including the task of 'transsuasion'.",
+		paper: "https://arxiv.org/abs/2410.02653",
+		studyWebsite: "https://behavior-in-the-wild.github.io/measure-persuasion",
+		dataset: {
+			url: "https://huggingface.co/datasets/behavior-in-the-wild/PersuasionArena",
+			description:
+				"The PersuasionArena dataset for evaluating LLM persuasion across different tasks consists of tweet pairs where two tweets from the same account have similar content and were posted in close temporal proximity, but received significantly different engagement (e.g., number of likes). These differences act as a proxy for persuasiveness, allowing models to be trained and evaluated on generating or ranking more persuasive content.",
+		},
+		code: null,
+	},
+
+	// {
+	// 	title: "Decoding Persuasiveness in Eloquence Competitions: An Investigation into the LLM’s Ability to Assess Public Speaking",
+	// 	year: "",
+	// 	authors: [],
+	// 	description: "",
+	// 	paper: null,
+	// 	studyWebsite: null,
+	// 	dataset: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// 	code: {
+	// 		url: "",
+	// 		description: "",
+	// 	},
+	// },
+
 	// {
 	// 	title: "ChatThero: An LLM-Supported Chatbot for Behavior Change and Therapy",
 	// 	year: "2025",
@@ -176,26 +213,6 @@ const resources: ResourceItem[] = [
 	// 	},
 	// },
 
-	{
-		title:
-			"Persuade Me if You Can: A Framework for Evaluating Persuasion Effectiveness and Susceptibility Among Large Language Models",
-		year: "2025",
-		authors: ["Nimet Beyza Bozdag", "Shuhaib Mehri", "Gokhan Tur", "Dilek Hakkani-Tür"],
-		description:
-			"A framework assessing LLMs on two fronts: their ability to change a user's mind and their own susceptibility to being persuaded.",
-		paper: "https://arxiv.org/abs/2503.01829",
-		studyWebsite: null,
-		dataset: {
-			url: "https://github.com/beyzabozdag/PersuadeMeIfYouCan/tree/main/data",
-			description:
-				"Benchmark data used to measure shifts in model and user opinions across controversial topics.",
-		},
-		code: {
-			url: "https://github.com/beyzabozdag/PersuadeMeIfYouCan",
-			description:
-				"Evaluation scripts and interaction loops for testing persuasion and susceptibility.",
-		},
-	},
 	// {
 	// 	title: "",
 	// 	year: "",
@@ -244,84 +261,7 @@ const resources: ResourceItem[] = [
 	// 		description: "",
 	// 	},
 	// },
-	{
-		title: "Persuading across Diverse Domains: A Dataset and Persuasion Large Language Model",
-		year: "2024",
-		authors: [
-			"Chuhao Jin",
-			"Kening Ren",
-			"Lingzhen Kong",
-			"Xiting Wang",
-			"Ruihua Song",
-			"Huan Chen",
-		],
-		description:
-			"Introduces DailyPersuasion, a large-scale multi-domain persuasive dialogue dataset, and PersuGPT, a model specialized in persuasion strategies.",
-		paper: "https://aclanthology.org/2024.acl-long.92/",
-		studyWebsite: "https://persugpt.github.io",
-		dataset: {
-			url: "https://persugpt.github.io",
-			description:
-				"DailyPersuasion dataset comprising 78,000 dialogue sessions spanning 35 domains.",
-		},
-		code: {
-			url: "https://persugpt.github.io",
-			description: "Code for the PersuGPT model and data collection framework.",
-		},
-	},
-	{
-		title:
-			"Measuring and Benchmarking Large Language Models’ Capabilities to Generate Persuasive Language",
-		year: "2024",
-		authors: ["Amalie Brogaard Pauli", "Isabelle Augenstein", "Ira Assent"],
-		description:
-			"Presents PERSUASIVE-PAIRS, a dataset of text pairs rewritten to be more or less persuasive, and a regression model for scoring relative persuasiveness.",
-		paper: "https://arxiv.org/abs/2406.17753",
-		studyWebsite: null,
-		dataset: {
-			url: "https://huggingface.co/datasets/APauli/Persuasive-Pairs",
-			description: "2697 short-text pairs annotated for relative persuasive language.",
-		},
-		code: {
-			url: "https://huggingface.co/APauli/Persuasive_language_in_pairs",
-			description: "A trained regression model to score and benchmark persuasive language.",
-		},
-	},
-	{
-		title: "Measuring and Improving Persuasiveness of Large Language Models",
-		year: "2024",
-		authors: ["Somesh Singh", "Yaman K Singla", "Harini SI", "Balaji Krishnamurthy"],
-		description:
-			"Introduces PersuasionBench and PersuasionArena to evaluate generative and simulative persuasion capabilities, including the task of 'transsuasion'.",
-		paper: "https://arxiv.org/abs/2410.02653",
-		studyWebsite: "https://behavior-in-the-wild.github.io/measure-persuasion",
-		dataset: {
-			url: "https://behavior-in-the-wild.github.io/measure-persuasion",
-			description: "Benchmark datasets for evaluating persuasion across different tasks.",
-		},
-		code: {
-			url: "https://behavior-in-the-wild.github.io/measure-persuasion",
-			description: "Platform for the PersuasionArena and evaluation scripts.",
-		},
-	},
-	{
-		title:
-			"Persuade Me if You Can: A Framework for Evaluating Persuasion Effectiveness and Susceptibility Among Large Language Models",
-		year: "2025",
-		authors: ["Nimet Beyza Bozdag", "Shuhaib Mehri", "Gokhan Tur", "Dilek Hakkani-Tür"],
-		description:
-			"The PMIYC framework evaluates LLMs in multi-turn conversations to measure both their effectiveness as persuaders and susceptibility as persuadees.",
-		paper: "https://arxiv.org/abs/2503.01829",
-		studyWebsite: "https://beyzabozdag.github.io/PMIYC",
-		dataset: {
-			url: "https://beyzabozdag.github.io/PMIYC",
-			description: "Data related to the multi-agent persuasion framework.",
-		},
-		code: {
-			url: "https://beyzabozdag.github.io/PMIYC",
-			description: "Code for the multi-agent simulation framework.",
-		},
-	},
+
 	{
 		title:
 			"It’s the Thought that Counts: Evaluating the Attempts of Frontier LLMs to Persuade on Harmful Topics",
@@ -375,24 +315,7 @@ const resources: ResourceItem[] = [
 			description: "The MARBLE framework for multi-agent coordination evaluation.",
 		},
 	},
-	{
-		title: "Among Them: A Game-Based Framework for Assessing Persuasion Capabilities of LLMs",
-		year: "2025",
-		authors: ["Mateusz Idziejczak", "Vasyl Korzavatykh", "Mateusz Stawicki", "others"],
-		description:
-			"An evaluation framework using social deduction gameplay to measure how LLMs use persuasion and deception in dynamic environments.",
-		paper: "https://arxiv.org/abs/2502.20426",
-		studyWebsite: null,
-		dataset: {
-			url: "https://doi.org/10.5281/zenodo.14935395",
-			description: "Annotated dataset of LLM persuasion phrases and game logs.",
-		},
-		code: {
-			url: "https://github.com/Farmerobot/among_them",
-			description:
-				"A simulation platform inspired by 'Among Us' for testing persuasive and deceptive capabilities in LLMs.",
-		},
-	},
+
 	{
 		title: "Werewolf Arena: A Case Study in LLM Evaluation via Social Deduction",
 		year: "2024",
